@@ -2,6 +2,7 @@
 # Created by https://www.gitignore.io/api/macos,emacs,python
 /diagrams
 /gifs
+/sample_data
 
 ### Emacs ###
 # -*- mode: gitignore; -*-
