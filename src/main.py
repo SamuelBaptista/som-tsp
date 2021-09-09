@@ -1,4 +1,5 @@
 from sys import argv
+from matplotlib.colors import PowerNorm
 
 import numpy as np
 
@@ -18,15 +19,17 @@ def main():
     route = som(problem, 100000)
 
     problem = problem.reindex(route)
+    problem.to_csv('sample_data/solucao_1.csv')
 
     distance = route_distance(problem)
 
+    print(problem)
     print('Route found of length {}'.format(distance))
 
 
 def som(problem, iterations, learning_rate=0.8):
     """Solve the TSP using a Self-Organizing Map."""
-
+    
     # Obtain the normalized set of cities (w/ coord in [0,1])
     cities = problem.copy()
 
@@ -73,6 +76,7 @@ def som(problem, iterations, learning_rate=0.8):
 
     route = get_route(cities, network)
     plot_route(cities, route, 'diagrams/route.png')
+    
     return route
 
 if __name__ == '__main__':

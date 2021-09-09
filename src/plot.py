@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 
-def plot_network(cities, neurons, name='diagram.png', ax=None):
+def plot_network(cities, neurons, name='diagram.png', ax = None, names = False):
     """Plot a graphical representation of the problem"""
     mpl.rcParams['agg.path.chunksize'] = 10000
 
@@ -14,6 +14,15 @@ def plot_network(cities, neurons, name='diagram.png', ax=None):
 
         axis.scatter(cities['x'], cities['y'], color='red', s=4)
         axis.plot(neurons[:,0], neurons[:,1], 'b.', ls='-', markersize=2)
+
+        if names:
+            for i in range(len(cities)):
+                plt.text(
+                    x=cities.x[i],
+                    y=cities.y[i],
+                    s=cities.city[i],
+                    fontdict=dict(color='black', size=10, alpha=0.3)
+                )
 
         plt.savefig(name, bbox_inches='tight', pad_inches=0, dpi=200)
         plt.close()
