@@ -1,5 +1,7 @@
 
 # Created by https://www.gitignore.io/api/macos,emacs,python
+/diagrams
+/gifs
 
 ### Emacs ###
 # -*- mode: gitignore; -*-

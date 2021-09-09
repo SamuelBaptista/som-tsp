@@ -4,8 +4,9 @@ import numpy as np
 
 from io_helper import read_tsp, normalize
 from neuron import generate_network, get_neighborhood, get_route
-from distance import select_closest, euclidean_distance, route_distance
+from distance import select_closest, route_distance
 from plot import plot_network, plot_route
+from gif import get_frames, create_gif, remove_images
 
 def main():
     if len(argv) != 2:
@@ -76,3 +77,9 @@ def som(problem, iterations, learning_rate=0.8):
 
 if __name__ == '__main__':
     main()
+
+    frames = get_frames()
+
+    create_gif(frames, 'teste')
+
+    remove_images()
