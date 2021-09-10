@@ -1,30 +1,36 @@
 from sys import argv
-from matplotlib.colors import PowerNorm
 
 import numpy as np
+import time
 
-from io_helper import read_tsp, normalize
+from io_helper import read_tsp, normalize, generate_tsp_from_excel
 from neuron import generate_network, get_neighborhood, get_route
 from distance import select_closest, route_distance
 from plot import plot_network, plot_route
 from gif import get_frames, create_gif, remove_images
 
 def main():
+    start = time.time()
     if len(argv) != 2:
-        print("Correct use: python src/main.py <filename>.tsp")
+        print("Correct use: python src/main.py <filename>.xlsx")
         return -1
 
-    problem = read_tsp(argv[1])
+    filename = argv[1].split('/')[-1].split('.')[0]
+    generate_tsp_from_excel(argv[1], filename) 
+
+    problem = read_tsp('assets/'+ filename +'.tsp')
 
     route = som(problem, 100000)
 
     problem = problem.reindex(route)
-    problem.to_csv('sample_data/solucao_1.csv')
+    problem.to_excel(f'outputs/output_from_{filename}.xlsx')
 
     distance = route_distance(problem)
-
-    print(problem)
     print('Route found of length {}'.format(distance))
+
+    end = time.time()
+
+    print(f'Execution time: {(end-start):0.2f} seconds ')
 
 
 def som(problem, iterations, learning_rate=0.8):

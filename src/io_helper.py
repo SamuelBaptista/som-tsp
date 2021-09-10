@@ -1,6 +1,19 @@
 import pandas as pd
 import numpy as np
 
+
+def generate_tsp_from_excel(path, filename):
+    dataframe = pd.read_excel(path)
+
+    with open(f'assets/{filename}.tsp', 'w+') as f:
+        f.write('TEST_FILE\n\n')
+        f.write(f'DIMENSION : {len(dataframe)}\n')
+        f.write('NODE_COORD_SECTION \n')
+
+        for line in dataframe.iterrows():
+            f.write(f'{line[1][0]} {line[1][1]} {line[1][2]}\n') 
+
+
 def read_tsp(filename):
     """
     Read a file in .tsp format into a pandas DataFrame

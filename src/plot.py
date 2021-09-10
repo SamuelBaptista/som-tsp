@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 
-def plot_network(cities, neurons, name='diagram.png', ax = None, names = False):
+def plot_network(cities, neurons, name='diagram.png', ax = None, names = True):
     """Plot a graphical representation of the problem"""
     mpl.rcParams['agg.path.chunksize'] = 10000
 
