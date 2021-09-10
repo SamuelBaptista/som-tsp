@@ -31,18 +31,17 @@ def create_gif(frames, name):
     )
 
 
-def remove_images(path='./diagrams'):
+def remove_images(filename, path='./diagrams'):
     files = os.listdir(path)
     
     for file in files:
+        if file == f'route_{filename}.png':
+            continue
         os.remove(os.path.join(path, file))
 
 
 
 if __name__ == '__main__':
-
     frames = get_frames()
-
     create_gif(frames, 'teste')
-
     remove_images()

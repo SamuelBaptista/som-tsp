@@ -20,7 +20,7 @@ def main():
 
     problem = read_tsp('assets/'+ filename +'.tsp')
 
-    route = som(problem, 100000)
+    route = som(problem, 100000, filename)
 
     problem = problem.reindex(route)
     problem.to_excel(f'outputs/output_from_{filename}.xlsx')
@@ -28,12 +28,16 @@ def main():
     distance = route_distance(problem)
     print('Route found of length {}'.format(distance))
 
+    frames = get_frames()
+    create_gif(frames, filename)
+    remove_images(filename)
+
     end = time.time()
 
     print(f'Execution time: {(end-start):0.2f} seconds ')
 
 
-def som(problem, iterations, learning_rate=0.8):
+def som(problem, iterations, filename, learning_rate=0.8):
     """Solve the TSP using a Self-Organizing Map."""
     
     # Obtain the normalized set of cities (w/ coord in [0,1])
@@ -81,15 +85,9 @@ def som(problem, iterations, learning_rate=0.8):
     plot_network(cities, network, name='diagrams/final.png')
 
     route = get_route(cities, network)
-    plot_route(cities, route, 'diagrams/route.png')
+    plot_route(cities, route, f'diagrams/route_{filename}.png')
     
     return route
 
 if __name__ == '__main__':
     main()
-
-    frames = get_frames()
-
-    create_gif(frames, 'teste')
-
-    remove_images()

@@ -32,7 +32,7 @@ def plot_network(cities, neurons, name='diagram.png', ax = None, names = True):
         ax.plot(neurons[:,0], neurons[:,1], 'b.', ls='-', markersize=2)
         return ax
 
-def plot_route(cities, route, name='diagram.png', ax=None):
+def plot_route(cities, route, name='diagram.png', ax=None, names=True):
     """Plot a graphical representation of the route obtained"""
     mpl.rcParams['agg.path.chunksize'] = 10000
 
@@ -42,6 +42,15 @@ def plot_route(cities, route, name='diagram.png', ax=None):
 
         axis.set_aspect('equal', adjustable='datalim')
         plt.axis('off')
+
+        if names:
+            for i in range(len(cities)):
+                plt.text(
+                    x=cities.x[i],
+                    y=cities.y[i],
+                    s=cities.city[i],
+                    fontdict=dict(color='black', size=10, alpha=0.3)
+                )
 
         axis.scatter(cities['x'], cities['y'], color='blue', s=4)
         route = cities.reindex(route)
