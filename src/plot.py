@@ -20,7 +20,7 @@ def plot_network(cities, neurons, name='diagram.png', ax = None, names = True):
                 plt.text(
                     x=cities.x[i],
                     y=cities.y[i],
-                    s=cities.city[i],
+                    s=cities.cod_fazenda[i],
                     fontdict=dict(color='black', size=10, alpha=0.3)
                 )
 
@@ -48,7 +48,7 @@ def plot_route(cities, route, name='diagram.png', ax=None, names=True):
                 plt.text(
                     x=cities.x[i],
                     y=cities.y[i],
-                    s=cities.city[i],
+                    s=cities.cod_fazenda[i],
                     fontdict=dict(color='black', size=10, alpha=0.3)
                 )
 

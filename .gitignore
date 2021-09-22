@@ -5,6 +5,7 @@
 /sample_data
 /inputs
 /outputs
+/assets
 
 ### Emacs ###
 # -*- mode: gitignore; -*-

@@ -45,8 +45,8 @@ def read_tsp(filename):
             f,
             skiprows=node_coord_start + 1,
             sep=' ',
-            names=['city', 'y', 'x'],
-            dtype={'city': str, 'x': np.float64, 'y': np.float64},
+            names=['cod_fazenda', 'y', 'x'],
+            dtype={'city': int, 'x': np.float64, 'y': np.float64},
             header=None,
             nrows=dimension
         )

@@ -1,5 +1,4 @@
-from sys import argv
-
+import os
 import numpy as np
 import time
 
@@ -11,26 +10,28 @@ from gif import get_frames, create_gif, remove_images
 
 def main():
     start = time.time()
-    if len(argv) != 2:
-        print("Correct use: python src/main.py <filename>.xlsx")
-        return -1
 
-    filename = argv[1].split('/')[-1].split('.')[0]
-    generate_tsp_from_excel(argv[1], filename) 
+    files = os.listdir('inputs')
 
-    problem = read_tsp('assets/'+ filename +'.tsp')
+    for file in files:
+        print(file)
 
-    route = som(problem, 100000, filename)
+        filename = file.split('/')[-1].split('.')[0]
+        generate_tsp_from_excel('inputs/'+file, filename) 
 
-    problem = problem.reindex(route)
-    problem.to_excel(f'outputs/output_from_{filename}.xlsx')
+        problem = read_tsp('assets/'+ filename +'.tsp')
 
-    distance = route_distance(problem)
-    print('Route found of length {}'.format(distance))
+        route = som(problem, 100000, filename)
 
-    frames = get_frames()
-    create_gif(frames, filename)
-    remove_images(filename)
+        problem = problem.reindex(route)
+        problem.to_excel(f'outputs/output_from_{filename}.xlsx', index=False)
+
+        distance = route_distance(problem)
+        print('Route found of length {}'.format(distance))
+
+        frames = get_frames()
+        create_gif(frames, filename)
+        remove_images(filename)
 
     end = time.time()
 
