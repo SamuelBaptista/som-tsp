@@ -1,4 +1,5 @@
 from unidecode import unidecode
+import numpy as np
 
 def clean_column_names(columns):
     clean_columns = []
@@ -14,3 +15,8 @@ def clean_column_names(columns):
         )
     
     return clean_columns
+
+
+def euclidean_distance(a, b):
+    """Return the array of distances of two numpy arrays of points."""
+    return np.linalg.norm(a - b, axis=1)
