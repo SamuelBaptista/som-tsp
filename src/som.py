@@ -37,8 +37,8 @@ def som(problem, iterations, filename, learning_rate=0.5):
         n = n * 0.9997
 
         # Check for plotting interval
-        if not i % 1000:
-            plot_candidates(network, name='imgs/{:05d}.jpg'.format(i))
+        if not i % 250:
+            plot_network(cities, network, name='imgs/{:05d}.jpg'.format(i))
 
         # Check if any parameter has completely decayed.
         if n < 1:
