@@ -55,7 +55,7 @@ def read_tsp(filename):
 
         return cities
 
-def normalize(points):
+def normalize(points, lat_col='x', lng_col='y'):
     """
     Return the normalized version of a given vector of points.
 
@@ -63,7 +63,7 @@ def normalize(points):
     initial offset and normalizing the points in a proportional interval: [0,1]
     on y, maintining the original ratio on x.
     """
-    ratio = (points.x.max() - points.x.min()) / (points.y.max() - points.y.min()), 1
+    ratio = (points[lat_col].max() - points[lat_col].min()) / (points[lng_col].max() - points[lng_col].min()), 1
     ratio = np.array(ratio) / max(ratio)
     norm = points.apply(lambda c: (c - c.min()) / (c.max() - c.min()))
     return norm.apply(lambda p: ratio * p, axis=1)
