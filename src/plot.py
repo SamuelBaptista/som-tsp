@@ -1,6 +1,18 @@
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 
+
+def plot_candidates(candidates, name):
+    fig = plt.figure(figsize=(5, 5), frameon = False)
+    axis = fig.add_axes([0,0,1,1])
+
+    axis.set_aspect('equal', adjustable='datalim')
+    plt.axis('off')
+
+    plt.scatter(candidates[:,0], candidates[:,1], color='blue', s=4)
+    plt.savefig(name, bbox_inches='tight', pad_inches=0, dpi=200)
+    plt.close()
+
 def plot_network(cities, neurons, name='diagram.png', ax = None, names = True):
     """Plot a graphical representation of the problem"""
     mpl.rcParams['agg.path.chunksize'] = 10000
@@ -20,7 +32,7 @@ def plot_network(cities, neurons, name='diagram.png', ax = None, names = True):
                 plt.text(
                     x=cities.x[i],
                     y=cities.y[i],
-                    s=cities.cod_fazenda[i],
+                    s=cities.codigo[i],
                     fontdict=dict(color='black', size=10, alpha=0.3)
                 )
 
@@ -48,7 +60,7 @@ def plot_route(cities, route, name='diagram.png', ax=None, names=True):
                 plt.text(
                     x=cities.x[i],
                     y=cities.y[i],
-                    s=cities.cod_fazenda[i],
+                    s=cities.codigo[i],
                     fontdict=dict(color='black', size=10, alpha=0.3)
                 )
 

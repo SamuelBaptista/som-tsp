@@ -1,2 +1,2 @@
-serve:
-	streamlit run view.py
+gif:
+	python src/gif.py

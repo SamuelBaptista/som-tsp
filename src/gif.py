@@ -3,7 +3,7 @@ import os
 
 from PIL import Image
 
-def get_frames(source="./diagrams/*.png"):
+def get_frames(source="./imgs/*.jpg"):
     frames = []
     imgs = glob.glob(source)
 
@@ -25,16 +25,16 @@ def create_gif(frames, name):
         format='GIF',
         append_images=frames[1:],
         save_all=True,
-        duration=300,
+        duration=600,
         loop=0
     )
 
 
-def remove_images(filename, path='./diagrams'):
+def remove_images(filename='teste', path='./imgs'):
     files = os.listdir(path)
     
     for file in files:
-        if file == f'route_{filename}.png':
+        if file == f'route_{filename}.jpg':
             continue
         os.remove(os.path.join(path, file))
 

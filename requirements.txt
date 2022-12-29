@@ -4,3 +4,4 @@ googlemaps
 python-dotenv
 ipykernel
 gmplot
+scikit-learn
